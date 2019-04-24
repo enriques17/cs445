@@ -8,10 +8,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-You will need a RaspberryPi B+
+You will need a RaspberryPi B+,
+A separate server, this can be in the form of a cloud server or a Linux box.
 
 ```
-
+What does this look like
 ```
 
 ### Installing
