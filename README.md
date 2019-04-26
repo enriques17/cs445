@@ -11,9 +11,9 @@ These instructions will get you a copy of the project up and running on your loc
 You will need a RaspberryPi B+,
 A separate server, this can be in the form of a cloud server or a Linux box.
 
-```
+<!-- ```
 What does this look like
-```
+``` -->
 ### Ensure that SSH is enabled on the Pi
 #### Enable with GUI
 
@@ -54,11 +54,14 @@ ssh <googlecloud>@<xx.xx.xx.x>
 ```
 If this gives you access to the Google server without a password prompt you set it up correctly.
 
-## Running the tests
+## Creating the Reverse SSH tunnel
 
-Explain how to run the automated tests for this system
+On the Pi run
+```
+ssh -N -R 4444:localhost:22 <googlecloud>@<xx.xx.xx.x>
+```
 
-### Break down into end to end tests
+<!-- ### Break down into end to end tests
 
 Explain what these tests test and why
 
@@ -106,4 +109,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 * Hat tip to anyone whose code was used
 * Inspiration
-* etc
+* etc -->
