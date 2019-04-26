@@ -52,7 +52,7 @@ You can test to see if this worked by running
 ```
 ssh <googlecloud>@<xx.xx.xx.x>
 ```
-if this gives you access to the Google server without a password prompt you set it up correctly.
+If this gives you access to the Google server without a password prompt you set it up correctly.
 
 ## Running the tests
 
