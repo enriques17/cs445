@@ -42,15 +42,17 @@ ssh-keygen -t rsa
 
 #### Move the public key to the destination computer (Google Cloud)
 
-Use SCP to transfer public key.
-```
-scp [options] username1@source_host:directory1/filename1 username2@destination_host:directory2/filename2
-```
-so in your case you would use
+Use SCP to transfer public key from the RaspberryPi to the Google Server.
 ```
 scp id_rsa.pub <googlecloud>@<xx.xx.xx.x>:.ssh/authorized_keys
 ```
+Ensure that the path to ```id_rsa.pub``` is correct.
 
+You can test to see if this worked by running
+```
+ssh <googlecloud>@<xx.xx.xx.x>
+```
+if this gives you access to the Google server without a password prompt you set it up correctly.
 
 ## Running the tests
 
