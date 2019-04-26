@@ -32,23 +32,25 @@ What does this look like
 
 ### Set Up SSH without password
 
+#### Create a private key on the source computer (RaspberryPi)
 
-
-
-Create a private key on the source computer (RaspberryPi)
-
+Generate an ssh key with:
 ```
 cd ~/.ssh
 ssh-keygen -t rsa
 ```
 
-And repeat
+#### Move the public key to the destination computer (Google Cloud)
 
+Use SCP to transfer public key.
 ```
-until finished
+scp [options] username1@source_host:directory1/filename1 username2@destination_host:directory2/filename2
+```
+so in your case you would use
+```
+scp id_rsa.pub <googlecloud>@<xx.xx.xx.x>:.ssh/authorized_keys
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
