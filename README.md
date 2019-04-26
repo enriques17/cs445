@@ -15,8 +15,20 @@ A separate server, this can be in the form of a cloud server or a Linux box.
 What does this look like
 ```
 ### Ensure that SSH is enabled on the Pi
+#### Enable with GUI
 
-1. Launch ``` Raspberry Pi Configuration ``` from the ``` Preferences ``` menu
+1. Launch ``` Raspberry Pi Configuration ``` from the ``` Preferences ``` menu.
+2. Navigate to the ```Interfaces``` tab.
+3. Select ```Enabled``` next to ```SSH```.
+
+#### Enable via terminal
+
+1. Enter ```sudo raspi-config``` in a terminal window
+2. Select ```Interfacing Options```
+3. Navigate to and select ```SSH```
+4. Choose ```Yes```
+5. Select ```Ok```
+6. Choose ```Finish```
 
 ### Set Up SSH without password
 
