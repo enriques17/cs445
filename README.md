@@ -14,15 +14,20 @@ A separate server, this can be in the form of a cloud server or a Linux box.
 ```
 What does this look like
 ```
+### Ensure that SSH is enabled on the Pi
 
-### Installing
+1. Launch ``` Raspberry Pi Configuration ``` from the ``` Preferences ``` menu
 
-A step by step series of examples that tell you how to get a development env running
+### Set Up SSH without password
 
-Say what the step will be
+
+
+
+Create a private key on the source computer (RaspberryPi)
 
 ```
-Give the example
+cd ~/.ssh
+ssh-keygen -t rsa
 ```
 
 And repeat
