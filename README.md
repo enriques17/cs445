@@ -1,7 +1,7 @@
 # Reverse ssh tunneler with RaspberryPi
 
 
-Convert a Raspberry Pi B+ into a reverse ssh tunnler that will automatically connect to a host server via ssh. This allows full access to the network the Pi is connected to, via ethernet, from the host server without entering a password.
+Convert a Raspberry Pi B+ into a reverse ssh tunneler that will automatically connect to a host server via ssh. This allows full access to the network the Pi is connected to, via ethernet, from the host server without entering a password.
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -44,23 +44,23 @@ You will need:
   5. Put private key from server into the Pi's ``` ~/.ssh/ ``` directory.
 
 #### Move the private key to the Static IP Server
-  #### 1. If you have a remote host you can use SCP to transfer private key from the Raspberry Pi to the Static IP Server. 
-   To do this run on the Raspberry Pi: 
-    ``` scp id_rsa <staticip>@<xx.xx.xx.x>:~/ ``` 
+  #### 1. If you have a remote host you can use SCP to transfer private key from the Raspberry Pi to the Static IP Server.
+   To do this run on the Raspberry Pi:
+    ``` scp id_rsa <staticip>@<xx.xx.xx.x>:~/ ```
    Ensure that the path to ```id_rsa``` is correct.
 
   #### 2. If you don't have a remote host.
-   You can just copy the ``` id_rsa ``` file and email it to yourself. 
+   You can just copy the ``` id_rsa ``` file and email it to yourself.
    Copy the file and manually place it in ``` ~/.ssh ``` on the server.
 
   #### 3. Test to see if this worked.
    1. On the Raspberry Pi run ``` ifconfig ```, this will return an inet address for ```eth0 ```
    2. On the server run ``` ssh pi@xxx.xxx.xx.x ``` (replace the x's with inet address from the previous step).
    3. If this gives you access to th server without a password prompt you set it up correctly.
-  
+
 ## 3. Creating the Reverse SSH tunnel
  1. Navigate to ```sshd_config``` on th Pi. Run:
- ``` 
+ ```
  sudo nano ~/etc/ssh/sshd_config
  ```
  2. Look for commented portion that says ```#Port 22``` and change it to ``` Port 4444 ```
@@ -78,4 +78,3 @@ You will need:
 * **Enrique Sandoval** - [Enriques17](https://github.com/enriques17)
 
 See also the list of [contributors](https://github.com/enriques17/cs445/graphs/contributors) who participated in this project.
-
