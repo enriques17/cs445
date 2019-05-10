@@ -39,9 +39,9 @@ You will need:
   2. Choose no passphrase when asked and accept the default filename of id_rsa. This creates both the id_rsa private key file and id_rsa.pub public key file. Keep the private key on the source system and copy the public key to the destination system.
   Create authorized key file
 
-  3. Put id_rsa.pub into file
+  3. Put id_rsa.pub into file names ``` authorized_keys ```
 
-  4. give private key to server
+  4. Put private key from server into ``` ~/.ssh/ ```
 
 #### Move the private key to the Static IP Server
   #### 1. If you have a remote host you can use SCP to transfer private key from the Raspberry Pi to the Static IP Server. 
@@ -50,57 +50,30 @@ You will need:
    Ensure that the path to ```id_rsa``` is correct.
 
   #### 2. If you don't have a remote host.
-    You can just copy the ``` id_rsa ``` file and email it to yourself. 
-    Copy the file and manually place it in ``` ~/.ssh ``` on the server.
+   You can just copy the ``` id_rsa ``` file and email it to yourself. 
+   Copy the file and manually place it in ``` ~/.ssh ``` on the server.
 
-#### 3. Test to see if this worked.
-  1. On the Raspberry Pi run ``` ifconfig ```, this will return an inet address for ```eth0 ```
-  2. On the server run ``` ssh pi@xxx.xxx.xx.x ``` (replace the x's with inet address from the previous step).
-  3. If this gives you access to th server without a password prompt you set it up correctly.
+  #### 3. Test to see if this worked.
+   1. On the Raspberry Pi run ``` ifconfig ```, this will return an inet address for ```eth0 ```
+   2. On the server run ``` ssh pi@xxx.xxx.xx.x ``` (replace the x's with inet address from the previous step).
+   3. If this gives you access to th server without a password prompt you set it up correctly.
+  
 ## 3. Creating the Reverse SSH tunnel
-
-On the Pi run
+ 1. Navigate to ```sshd_config``` on th Pi. Run:
+ ``` 
+ sudo nano ~/etc/ssh/sshd_config
+ ```
+ 2. Look for commented portion that says ```#Port 22``` and change it to ``` Port 4444 ```
+ 3. Do these same steps on the server but change it to ``` Port 2222 ```.
+ 4. On the Pi run
 ```
-ssh -N -R 4444:localhost:22 <googlecloud>@<xx.xx.xx.x>
-```
-
-<!-- ### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
+/usr/bin/ssh -p 2222 -v -N -R 5555:localhost:4444 <server>@<xx.xx.xx>
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Jackson Melcher** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
