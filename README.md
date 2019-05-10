@@ -39,9 +39,9 @@ You will need:
   2. Choose no passphrase when asked and accept the default filename of id_rsa. This creates both the id_rsa private key file and id_rsa.pub public key file. Keep the private key on the source system and copy the public key to the destination system.
   Create authorized key file
 
-  Put id_rsa.pub into file
+  3. Put id_rsa.pub into file
 
-  give private key to server
+  4. give private key to server
 
 #### Move the private key to the Static IP Server
   #### 1. If you have a remote host you can use SCP to transfer private key from the Raspberry Pi to the Static IP Server. 
@@ -54,14 +54,9 @@ You will need:
     Copy the file and manually place it in ``` ~/.ssh ``` on the server.
 
 #### 3. Test to see if this worked.
-  1. On the Raspberry Pi run:
-  ```
-  ifconfig
-  ```
-and then on the 
-
-from the Pi
-If this gives you access to th server without a password prompt you set it up correctly.
+  1. On the Raspberry Pi run ``` ifconfig ```, this will return an inet address for ```eth0 ```
+  2. On the server run ``` ssh pi@xxx.xxx.xx.x ``` (replace the x's with inet address from the previous step).
+  3. If this gives you access to th server without a password prompt you set it up correctly.
 ## 3. Creating the Reverse SSH tunnel
 
 On the Pi run
