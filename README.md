@@ -1,60 +1,68 @@
 # Reverse ssh tunneler with RaspberryPi
 
 
-
+Convert a Raspberry Pi B+ into a reverse ssh tunnler that will automatically connect to a host server via ssh. This allows full access to the network the Pi is connected to, via ethernet, from the host server without entering a password.
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
-You will need a RaspberryPi B+,
-A separate server, this can be in the form of a cloud server or a Linux box.
+You will need:
+  * RaspberryPi B+,
+  * A server with a static IP address, this can be in the form of a cloud server or a Linux box.
+  * An SD card flashed with a Rasbian image. A tutorial to load Rasbian can be found [here.](https://www.raspberrypi.org/downloads/noobs/
+ "Download NOOBS")
 
-<!-- ```
-What does this look like
-``` -->
-### Ensure that SSH is enabled on the Pi
-#### Enable with GUI
+## 1.  Ensure that SSH is enabled on the Pi
+  #### A. Enable with GUI
+   1. Launch ``` Raspberry Pi Configuration ``` from the ``` Preferences ``` menu.
+   2. Navigate to the ```Interfaces``` tab.
+   3. Select ```Enabled``` next to ```SSH```.
 
-1. Launch ``` Raspberry Pi Configuration ``` from the ``` Preferences ``` menu.
-2. Navigate to the ```Interfaces``` tab.
-3. Select ```Enabled``` next to ```SSH```.
+  #### B. Enable via terminal
+   1. Enter ```sudo raspi-config``` in a terminal window
+   2. Select ```Interfacing Options```
+   3. Navigate to and select ```SSH```
+   4. Choose ```Yes```
+   5. Select ```Ok```
+   6. Choose ```Finish```
 
-#### Enable via terminal
+## 2. Set Up SSH without password
 
-1. Enter ```sudo raspi-config``` in a terminal window
-2. Select ```Interfacing Options```
-3. Navigate to and select ```SSH```
-4. Choose ```Yes```
-5. Select ```Ok```
-6. Choose ```Finish```
+#### Create a private key on the source computer (Raspberry Pi)
+  1. Generate an ssh key with:
+  ```
+  cd ~/.ssh
+  ssh-keygen -t rsa
+  ```
+  2. Choose no passphrase when asked and accept the default filename of id_rsa. This creates both the id_rsa private key file and id_rsa.pub public key file. Keep the private key on the source system and copy the public key to the destination system.
+  Create authorized key file
 
-### Set Up SSH without password
+  Put id_rsa.pub into file
 
-#### Create a private key on the source computer (RaspberryPi)
+  give private key to server
 
-Generate an ssh key with:
-```
-cd ~/.ssh
-ssh-keygen -t rsa
-```
+#### Move the private key to the Static IP Server
+  #### 1. If you have a remote host you can use SCP to transfer private key from the Raspberry Pi to the Static IP Server. 
+   To do this run on the Raspberry Pi: 
+    ``` scp id_rsa <staticip>@<xx.xx.xx.x>:~/ ``` 
+   Ensure that the path to ```id_rsa``` is correct.
 
-#### Move the public key to the destination computer (Google Cloud)
+  #### 2. If you don't have a remote host.
+    You can just copy the ``` id_rsa ``` file and email it to yourself. 
+    Copy the file and manually place it in ``` ~/.ssh ``` on the server.
 
-Use SCP to transfer public key from the RaspberryPi to the Google Server.
-```
-scp id_rsa.pub <googlecloud>@<xx.xx.xx.x>:.ssh/authorized_keys
-```
-Ensure that the path to ```id_rsa.pub``` is correct.
+#### 3. Test to see if this worked.
+  1. On the Raspberry Pi run:
+  ```
+  ifconfig
+  ```
+and then on the 
 
-You can test to see if this worked by running
-```
-ssh <googlecloud>@<xx.xx.xx.x>
-```
-If this gives you access to the Google server without a password prompt you set it up correctly.
-
-## Creating the Reverse SSH tunnel
+from the Pi
+If this gives you access to th server without a password prompt you set it up correctly.
+## 3. Creating the Reverse SSH tunnel
 
 On the Pi run
 ```
