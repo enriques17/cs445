@@ -37,11 +37,11 @@ You will need:
   ssh-keygen -t rsa
   ```
   2. Choose no passphrase when asked and accept the default filename of id_rsa. This creates both the id_rsa private key file and id_rsa.pub public key file. Keep the private key on the source system and copy the public key to the destination system.
-  Create authorized key file
+  3. Create authorized key file.
 
-  3. Put id_rsa.pub into file names ``` authorized_keys ```
+  4. Put id_rsa.pub into file named ``` authorized_keys ```.
 
-  4. Put private key from server into ``` ~/.ssh/ ```
+  5. Put private key from server into the Pi's ``` ~/.ssh/ ``` directory.
 
 #### Move the private key to the Static IP Server
   #### 1. If you have a remote host you can use SCP to transfer private key from the Raspberry Pi to the Static IP Server. 
@@ -73,16 +73,9 @@ You will need:
 
 ## Authors
 
-* **Jackson Melcher** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Jackson Melcher** - [jacksonmelcher](https://github.com/PurpleBooth)
+* **James Crocitto** - [jacrocitto](https://github.com/jacrocitto)
+* **Enrique Sandoval** - [Enriques17](https://github.com/enriques17)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/enriques17/cs445/graphs/contributors) who participated in this project.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc -->
